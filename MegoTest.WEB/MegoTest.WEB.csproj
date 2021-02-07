@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MegoTest.Common\MegoTest.Common.csproj" />
+    <ProjectReference Include="..\MegoTest.DAL\MegoTest.DAL.csproj" />
+    <ProjectReference Include="..\MegoTest.Service\MegoTest.Service.csproj" />
+  </ItemGroup>
+
+
+</Project>
