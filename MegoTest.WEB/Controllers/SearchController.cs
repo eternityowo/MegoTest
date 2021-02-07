@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MegoTest.Common;
@@ -52,36 +53,39 @@ namespace MegoTest.WEB.Controllers
 
             using (var source = new CancellationTokenSource(TimeSpan.FromMilliseconds(timeout)))
             {
-                List<string> completeTasks = new List<string>();
+                var completeTasks = new List<string>();
 
                 var A = _externalA.Request(source);
                 var B = _externalB.Request(source);
                 var C = _externalC.Request(source);
-                Task<(RequestStatusCode status, int time)> D = default;
+                Task<(RequestStatusCode status, int time, string name)> D = default;
 
                 var externalTasks = new List<Task> { A, B, C };
 
                 while (externalTasks.Count > 0)
                 {
                     Task finishedTask = await Task.WhenAny(externalTasks);
+
                     if (finishedTask == A && A.Result.status != RequestStatusCode.TIMEOUT)
                     {
-                        completeTasks.Add(TaskFormat(A.Result, "A"));
+                        completeTasks.Add(TaskFormat(A.Result, A.Result.name));
                     }
                     else if (finishedTask == B && B.Result.status != RequestStatusCode.TIMEOUT)
                     {
-                        completeTasks.Add(TaskFormat(B.Result, "B"));
+                        completeTasks.Add(TaskFormat(B.Result, B.Result.name));
                     }
                     else if (finishedTask == C && C.Result.status != RequestStatusCode.TIMEOUT)
                     {
-                        completeTasks.Add(TaskFormat(C.Result, "C"));
+                        completeTasks.Add(TaskFormat(C.Result, C.Result.name));
+
                         if (C.Result.status == RequestStatusCode.OK)
                         {
                             D = _externalD.Request(source);
                             await D;
+
                             if (D.Result.status != RequestStatusCode.TIMEOUT)
                             {
-                                completeTasks.Add(TaskFormat(D.Result, "D"));
+                                completeTasks.Add(TaskFormat(D.Result, D.Result.name));
                             }
                         }
                     }
@@ -90,14 +94,14 @@ namespace MegoTest.WEB.Controllers
 
                 var metics = new List<Metric>
                 {
-                    new Metric() { TaskName = "A", TimeInMs = A.Result.time },
-                    new Metric() { TaskName = "B", TimeInMs = B.Result.time },
-                    new Metric() { TaskName = "C", TimeInMs = C.Result.time }
+                    new Metric() { TaskName = A.Result.name, TimeInMs = A.Result.time },
+                    new Metric() { TaskName = B.Result.name, TimeInMs = B.Result.time },
+                    new Metric() { TaskName = C.Result.name, TimeInMs = C.Result.time }
                 };
 
                 if (C.Result.Item1 == RequestStatusCode.OK)
                 {
-                    metics.Add(new Metric() { TaskName = "D", TimeInMs = D.Result.time });
+                    metics.Add(new Metric() { TaskName = D.Result.name, TimeInMs = D.Result.time });
                 }
 
                 await _metrics.SaveMetricsAsync(metics);
@@ -114,9 +118,9 @@ namespace MegoTest.WEB.Controllers
             return result;
         }
 
-        private string TaskFormat((RequestStatusCode status, double time) result, string id)
+        private string TaskFormat((RequestStatusCode status, int time, string name) result, string id)
         {
-            return $"task: {id}, millisecond: {Math.Round(result.time, MidpointRounding.AwayFromZero)}, status {result.status}";
+            return $"task: {id}, millisecond: {result.time}, status {result.status}";
         }
     }
 }

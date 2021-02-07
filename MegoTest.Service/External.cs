@@ -14,15 +14,13 @@ namespace MegoTest.Service
 {
     public abstract class External : IExternal
     {
-        public async Task<(RequestStatusCode status, int time)> Request(CancellationTokenSource source)
+        public async Task<(RequestStatusCode status, int time, string name)> Request(CancellationTokenSource source)
         {
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
 
             try
             {
-                source.Token.ThrowIfCancellationRequested();
-
                 await Task.Delay(TimeSpan.FromMilliseconds(Rnd.TaskTimeMilliseconds), source.Token);
             }
             catch (TaskCanceledException ex)
@@ -36,7 +34,7 @@ namespace MegoTest.Service
 
             var timeInMs = (int) Math.Round(ts.TotalMilliseconds, MidpointRounding.AwayFromZero);
 
-            return (status, timeInMs);
+            return (status, timeInMs, GetType().Name);
         }
     }
 }

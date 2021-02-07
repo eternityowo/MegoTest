@@ -10,6 +10,6 @@ namespace MegoTest.Service.Interfaces
 {
     public interface IExternal
     {
-        Task<(RequestStatusCode status, int time)> Request(CancellationTokenSource source);
+        Task<(RequestStatusCode status, int time, string name)> Request(CancellationTokenSource source);
     }
 }

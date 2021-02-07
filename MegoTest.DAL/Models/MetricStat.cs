@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace MegoTest.DAL.Models
 {
+    [Keyless]
     public class MetricStat
     {
         public string Name { get; set; }

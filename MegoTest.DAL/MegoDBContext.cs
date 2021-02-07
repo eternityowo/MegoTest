@@ -1,4 +1,5 @@
 ﻿using MegoTest.DAL.Entities;
+using MegoTest.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using ZNetCS.AspNetCore.Logging.EntityFrameworkCore;
 
@@ -14,6 +15,9 @@ namespace MegoTest.DAL
         public DbSet<Log> Log { get; set; }
         public DbSet<Metric> Metrics { get; set; }
 
+
+        public DbSet<MetricStat> MetricStats { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -23,9 +27,7 @@ namespace MegoTest.DAL
             modelBuilder.Entity<Metric>().ToTable("Metrics");
             modelBuilder.Entity<Metric>().HasKey(m => m.Id).IsClustered(false);
 
-#pragma warning disable CS0618 // Type or member is obsolete
-            modelBuilder.Entity<Metric>().HasIndex("TaskName", "TimeInMs").HasName("IX_LogExtend").IsClustered();
-#pragma warning restore CS0618 // Type or member is obsolete
+            modelBuilder.Entity<Metric>().HasIndex("TaskName", "TimeInMs").HasDatabaseName("IX_LogExtend").IsClustered();
 
             modelBuilder.Entity<Metric>().Property(u => u.TaskName).HasMaxLength(255);
 

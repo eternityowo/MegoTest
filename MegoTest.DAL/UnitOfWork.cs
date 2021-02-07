@@ -35,6 +35,11 @@ namespace MegoTest.DAL
             return repository;
         }
 
+        public DbSet<T> GetDbSet<T>() where T : class
+        {
+            return _context.Set<T>();
+        }
+
         public Task<int> SaveChangesAsync() => _context.SaveChangesAsync();
 
         public int SaveChanges()
