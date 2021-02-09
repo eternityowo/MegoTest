@@ -1,5 +1,5 @@
-﻿using MegoTest.DAL.Entities;
-using MegoTest.DAL.Models;
+﻿using MegoTest.Data.Entities.Keyless;
+using MegoTest.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using ZNetCS.AspNetCore.Logging.EntityFrameworkCore;
 

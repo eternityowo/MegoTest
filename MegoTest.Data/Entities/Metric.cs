@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MegoTest.DAL.Entities
+namespace MegoTest.Data.Entities.Keyless
 {
     public class Metric : BaseEntity
     {

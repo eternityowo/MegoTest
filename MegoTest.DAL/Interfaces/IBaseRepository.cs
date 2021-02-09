@@ -5,7 +5,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using MegoTest.DAL.Models;
 
 namespace MegoTest.DAL.Interfaces
 {

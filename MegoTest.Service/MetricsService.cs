@@ -1,6 +1,4 @@
-﻿using MegoTest.DAL.Entities;
-using MegoTest.DAL.Models;
-using MegoTest.DAL.Interfaces;
+﻿using MegoTest.DAL.Interfaces;
 using MegoTest.Service.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System;
+using MegoTest.Data.Models;
+using MegoTest.Data.Entities.Keyless;
 
 namespace MegoTest.Service
 {
@@ -62,8 +62,9 @@ namespace MegoTest.Service
             return res;
         }
 
-        public async Task SaveMetricsAsync(IEnumerable<Metric> metrics)
+        public async Task SaveMetricsAsync(IEnumerable<MetricModel> metricModels)
         {
+            var metrics = metricModels.Select(m => new Metric() { TaskName = m.TaskName, TimeInMs = m.TimeInMs }); // change to AutoMapper 
             await _uow.GetRepository<Metric>().InsertAsync(metrics);
             await _uow.SaveChangesAsync();
         }

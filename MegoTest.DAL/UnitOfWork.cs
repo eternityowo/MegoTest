@@ -35,6 +35,8 @@ namespace MegoTest.DAL
             return repository;
         }
 
+        public struct Test { }
+
         public DbSet<T> GetDbSet<T>() where T : class
         {
             return _context.Set<T>();

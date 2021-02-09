@@ -1,6 +1,6 @@
 ﻿using MegoTest.Common;
 using MegoTest.DAL.Interfaces;
-using MegoTest.DAL.Entities;
+using MegoTest.Data.Models;
 using MegoTest.Service.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace MegoTest.Service
 {
     public abstract class External : IExternal
     {
-        public async Task<(RequestStatusCode status, int time, string name)> Request(CancellationTokenSource source)
+        public async Task<MetricModel> Request(CancellationTokenSource source)
         {
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
@@ -34,7 +34,9 @@ namespace MegoTest.Service
 
             var timeInMs = (int) Math.Round(ts.TotalMilliseconds, MidpointRounding.AwayFromZero);
 
-            return (status, timeInMs, GetType().Name);
+            var metricModel = new MetricModel() { TaskName = GetType().Name, TimeInMs = timeInMs, Status = status };
+
+            return metricModel;
         }
     }
 }

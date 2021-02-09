@@ -1,5 +1,5 @@
-﻿using MegoTest.DAL.Entities;
-using MegoTest.DAL.Models;
+﻿using MegoTest.Data.Entities.Keyless;
+using MegoTest.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +11,6 @@ namespace MegoTest.Service.Interfaces
     {
         public Task<IEnumerable<MetricStat>> GetMetricsAsync();
 
-        public Task SaveMetricsAsync(IEnumerable<Metric> metrics);
+        public Task SaveMetricsAsync(IEnumerable<MetricModel> metricModels);
     }
 }

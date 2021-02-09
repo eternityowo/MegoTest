@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MegoTest.DAL.Entities
+namespace MegoTest.Data.Entities
 {
     public class BaseEntity
     {

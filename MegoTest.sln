@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegoTest.Common", "MegoTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegoTest.DAL", "MegoTest.DAL\MegoTest.DAL.csproj", "{65BC057B-4429-4EF5-BF91-2F7E26E81E0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegoTest.WEB", "MegoTest.WEB\MegoTest.WEB.csproj", "{C1261C66-9841-4E02-BB84-9D5BE14A1BA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegoTest.WEB", "MegoTest.WEB\MegoTest.WEB.csproj", "{C1261C66-9841-4E02-BB84-9D5BE14A1BA1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegoTest.API.Test", "MegoTest.API.Test\MegoTest.API.Test.csproj", "{035719A4-203E-464A-9D2D-E56657E5613F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegoTest.Data", "MegoTest.Data\MegoTest.Data.csproj", "{057EF38B-66C7-404F-92C0-A2CF5F0AFED9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{C1261C66-9841-4E02-BB84-9D5BE14A1BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1261C66-9841-4E02-BB84-9D5BE14A1BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1261C66-9841-4E02-BB84-9D5BE14A1BA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{035719A4-203E-464A-9D2D-E56657E5613F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{035719A4-203E-464A-9D2D-E56657E5613F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{035719A4-203E-464A-9D2D-E56657E5613F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{035719A4-203E-464A-9D2D-E56657E5613F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{057EF38B-66C7-404F-92C0-A2CF5F0AFED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{057EF38B-66C7-404F-92C0-A2CF5F0AFED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{057EF38B-66C7-404F-92C0-A2CF5F0AFED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{057EF38B-66C7-404F-92C0-A2CF5F0AFED9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

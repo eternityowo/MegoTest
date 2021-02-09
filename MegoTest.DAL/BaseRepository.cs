@@ -7,8 +7,6 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using MegoTest.DAL.Interfaces;
-using MegoTest.DAL.Entities;
-using MegoTest.DAL.Models;
 using MegoTest.Common.Extensions;
 
 namespace MegoTest.DAL

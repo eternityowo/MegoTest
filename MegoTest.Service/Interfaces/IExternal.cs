@@ -5,11 +5,12 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using MegoTest.Data.Models;
 
 namespace MegoTest.Service.Interfaces
 {
     public interface IExternal
     {
-        Task<(RequestStatusCode status, int time, string name)> Request(CancellationTokenSource source);
+        Task<MetricModel> Request(CancellationTokenSource source);
     }
 }

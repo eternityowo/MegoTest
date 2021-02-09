@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MegoTest.DAL.Models
+namespace MegoTest.Data.Models
 {
     public class BaseModel
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace MegoTest.DAL.Models
+namespace MegoTest.Data.Models
 {
     [Keyless]
     public class MetricStat
